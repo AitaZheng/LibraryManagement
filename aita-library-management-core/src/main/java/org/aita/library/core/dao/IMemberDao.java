@@ -13,19 +13,23 @@ public interface IMemberDao {
      * @param password
      * @return
      */
-    MemberEntity findAndCreateMemeber(String email, String password);
+    MemberEntity findMember(String email, String password);
+
+    MemberEntity findMemberByEmail(String email);
+
+    MemberEntity save(String email, String passwd);
 
     /**
      * 查询人员
      * @param memberId
      * @return
      */
-    MemberEntity findMemeberById(Long memberId);
+    MemberEntity findMemberById(Long memberId);
 
     /**
      * 查询组内人员
      * @param teamId
      * @return
      */
-    MemberEntity findMemeberByTeamId(Long teamId);
+    MemberEntity findMemberByTeamId(Long teamId);
 }

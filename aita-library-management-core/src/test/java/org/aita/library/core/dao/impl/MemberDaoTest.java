@@ -17,10 +17,17 @@ public class MemberDaoTest {
         memberDao = new MemberDaoImpl();
     }
     @Test
-    public void findAndCreateMemeber(){
-        MemberEntity member1 = memberDao.findAndCreateMemeber("aita0908@163.com","12345678");
-        MemberEntity member2 = memberDao.findAndCreateMemeber("aita@126.com","12345678");
+    public void findMemeber(){
+        MemberEntity member1 = memberDao.findMember("aita0908@163.com","12345678");
+        MemberEntity member2 = memberDao.save("aita@126.com","12345678");
         Assert.checkNonNull(member1);
         Assert.checkNonNull(member2);
     }
+    @Test
+    public void saveMemeber(){
+
+    }
+
+
+
 }

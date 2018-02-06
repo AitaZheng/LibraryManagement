@@ -14,6 +14,7 @@
         <module>aita-library-management-test</module>
         <module>aita-library-management-common</module>
         <module>aita-library-management-biz-web</module>
+        <module>aita-library-management-api</module>
     </modules>
 
 </project>
