@@ -14,11 +14,13 @@ public class MemberDaoTest {
     private IMemberDao memberDao;
     @Before
     public void setUp(){
-        memberDao=new MemberDaoImpl();
+        memberDao = new MemberDaoImpl();
     }
     @Test
     public void findAndCreateMemeber(){
-        MemberEntity member=memberDao.findAndCreateMemeber("aita@126.com","123456");
-        Assert.checkNull(member);
+        MemberEntity member1 = memberDao.findAndCreateMemeber("aita0908@163.com","12345678");
+        MemberEntity member2 = memberDao.findAndCreateMemeber("aita@126.com","12345678");
+        Assert.checkNonNull(member1);
+        Assert.checkNonNull(member2);
     }
 }

@@ -21,12 +21,11 @@ public class BaseDao {
             throw new RuntimeException("找不到指定的类");
         }
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(url, usr, password);
-            PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.executeQuery();
-        }catch(SQLException e){
-            throw new RuntimeException(e);
+            return conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return null;

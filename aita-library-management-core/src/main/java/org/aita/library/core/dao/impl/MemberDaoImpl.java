@@ -18,22 +18,29 @@ import java.sql.SQLException;
 public class MemberDaoImpl extends BaseDao implements IMemberDao {
 
     @Override
-    public MemberEntity findAndCreateMemeber(String email, String password) {
-        PreparedStatement pstmt = getPreparedStatement("select * from member where email=?,paasword=?");
+    public MemberEntity findAndCreateMemeber(String email, String passwd) {
+        PreparedStatement pstmt = getPreparedStatement("select * from book_manager.member where mail=? and passwd=?");
         MemberEntity member = null;
         try {
             pstmt.setString(1, email);
-            pstmt.setString(2, password);
+            pstmt.setString(2, passwd);
             ResultSet rst = pstmt.executeQuery();
             if (rst.next()) {
                 member = new MemberEntity();
                 member.setName(rst.getString("name"));
-                member.setEmail(rst.getString("email"));
-                member.setPassword(rst.getString("password"));
+                member.setEmail(rst.getString("mail"));
+                member.setPassword(rst.getString("passwd"));
                 member.setId(rst.getLong("id"));
-            }
-            if (member == null) {
+            }else{
+                pstmt = getPreparedStatement("insert into member (mail,passwd) values (?,?)");
                 //创建对象
+                member = new MemberEntity();
+                member.setEmail(email);
+                member.setPassword(passwd);
+                pstmt.setString(1,member.getEmail());
+                pstmt.setString(2,member.getPassword());
+                pstmt.execute();
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
