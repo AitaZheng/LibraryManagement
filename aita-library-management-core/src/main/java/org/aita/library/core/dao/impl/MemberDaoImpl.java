@@ -39,7 +39,7 @@ public class MemberDaoImpl implements IMemberDao {
     @Override
     public MemberEntity findMemberByEmail(String email) {
 
-        MemberEntity member = JDBCUtils.getData(String.format("select * from book_manager.member where mail=%s ", email),
+        MemberEntity member = JDBCUtils.getData(String.format("select * from book_manager.member where mail='%s' ", email),
                 new ResultSetConvert<MemberEntity>() {
             @Override
             public MemberEntity transfer(ResultSet resultSet) {

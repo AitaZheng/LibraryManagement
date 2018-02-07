@@ -64,6 +64,8 @@ public class JDBCUtils {
             return datas;
         } catch (SQLException e) {
             throw new LibraryManagementSqlException(e);
+        }finally {
+            close(statement);
         }
     }
 
@@ -87,6 +89,17 @@ public class JDBCUtils {
 
     public void close(Connection connection){
         try {
+            if(!connection.isClosed()){
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new LibraryManagementSqlException(e);
+        }
+    }
+
+    public void close(Statement statement){
+        try {
+            Connection connection=statement.getConnection();
             if(!connection.isClosed()){
                 connection.close();
             }
